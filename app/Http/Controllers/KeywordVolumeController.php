@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Services\KeywordVolumeEstimator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class KeywordVolumeController extends Controller
 {
     public function __construct(private KeywordVolumeEstimator $estimator) {}
 
+    public function index(): Response
+    {
+        return Inertia::render('volume/Index', [
+            'initialResults' => [],
+        ]);
+    }
     // ------------------------------------------------------------------
     // POST /api/seo/keyword-volume/single
     // ------------------------------------------------------------------
